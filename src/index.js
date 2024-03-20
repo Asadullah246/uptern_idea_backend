@@ -4,14 +4,13 @@ import dotenv from "dotenv";
 import express from "express";
 // import multer from "multer";
 // import multerS3 from 'multer-s3';
-import routes from "./routes/mysqldataaccess/mysqldata.js"
+
 const app = express();
 
 
 // use middleware
 app.use(cors());
 app.use(express.json());
-app.use(routes);
 dotenv.config();
 const port = process.env.PORT || 5000;
 
@@ -66,7 +65,7 @@ import team_staff from "./routes/team_staff/user.route.js";
 
 
 // connect to database
-dbConnection(); 
+dbConnection();
 
 // route
 // others buttons

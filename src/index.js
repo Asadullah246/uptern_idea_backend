@@ -68,7 +68,15 @@ import team_staff from "./routes/team_staff/user.route.js";
 dbConnection();
 
 // route
+// using
+app.use("/api/v1/websiteInfo", websiteInfo);
+
+// using end
+
+
+
 // others buttons
+app.use("/api/v1/contact", contact);
 app.use("/api/v1/matchmaking", matchmaking);
 app.use("/api/v1/training_workshop_seminar", training_workshop_seminar);
 app.use("/api/v1/consultancy", consultancy);
@@ -81,13 +89,12 @@ app.use("/api/v1/team_staff", team_staff);
 app.use("/api/v1/payment", paymentRoute);
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/course", course);
-app.use("/api/v1/websiteInfo", websiteInfo);
+
 app.use("/api/v1/blogs", blogs);
 app.use("/api/v1/quiz", quiz);
 app.use("/api/v1/faq", faq);
 app.use("/api/v1/talent", faq);
 app.use("/api/v1/testimonial", testimonial);
-app.use("/api/v1/contact", contact);
 app.use("/api/v1/newsletter", newslatter);
 app.use("/api/v1/askquestions", askquestions);
 app.use("/api/v1/admin", admin);

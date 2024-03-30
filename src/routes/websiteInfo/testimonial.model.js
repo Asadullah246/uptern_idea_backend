@@ -6,6 +6,10 @@ const jobSchema = new Schema(
       type: String,
       required: false,
     },
+    metaText: {
+      type: String,
+      required: false,
+    },
     logoImage: {
       type: String,
       required: false,
@@ -44,4 +48,4 @@ const jobSchema = new Schema(
 
 const Job = model("websiteInfo", jobSchema);
 
-export { Job }; 
+export { Job };

@@ -21,18 +21,18 @@ export const createUserApi = async (
   try {
     const data = req.body;
 
-    if (req.file) {
-      // Save the file path to the database
-      const imagePath = `/uploads/${req.file.filename}`;
-      data.logoImage = imagePath;
-    }
+    // if (req.file) {
+    //   // Save the file path to the database
+    //   const imagePath = `/uploads/${req.file.filename}`;
+    //   data.logoImage = imagePath;
+    // }
 
 
     const user = await createJob(data);
     return res.status(201).json({ status: "success", data: user });
   } catch (error) {
     console.log(error);
-    return res.status(201).json({ massage: error });
+    return res.status(401).json({ massage: error });
   }
 };
 
@@ -46,12 +46,12 @@ export const updateUser = async (
     const { _id } = req.params;
     const data = req.body;
 
-    if (req.file) {
-      // Save the file path to the database
-      const imagePath = `/uploads/${req.file.filename}`;
-      data.logoImage = imagePath;
-    }
- 
+    // if (req.file) {
+    //   // Save the file path to the database
+    //   const imagePath = `/uploads/${req.file.filename}`;
+    //   data.logoImage = imagePath;
+    // }
+
     const user = await patchJob({ _id, data });
     return res.status(201).json({ status: "success", data: user });
   } catch (error) {
@@ -72,7 +72,7 @@ export const deleteUser = async (
     return res.status(201).json({ status: "success", data: user });
   } catch (error) {
     console.log(error);
-    return res.status(201).json({ massage: error });
+    return res.status(401).json({ massage: error });
   }
 };
 
@@ -88,7 +88,7 @@ export const getUser = async (
     return res.status(201).json({ status: "success", data: users });
   } catch (error) {
     console.log(error);
-    return res.status(201).json({ massage: error });
+    return res.status(401).json({ massage: error });
   }
 };
 
@@ -103,6 +103,6 @@ export const getUsers = async (
     return res.status(201).json({ status: "success", data: users });
   } catch (error) {
     console.log(error);
-    return res.status(201).json({ massage: error });
+    return res.status(401).json({ massage: error });
   }
 };

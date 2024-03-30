@@ -35,6 +35,9 @@ import dbConnection from "./db/db.js";
 
 
 // routes
+import websiteInfo from "./routes/websiteInfo/testimonial.route.js";
+import blogs from "./routes/blogs/testimonial.route.js";
+
 
 import paymentRoute from "./routes/payment/payment.route.js";
 // user route
@@ -42,9 +45,7 @@ import course from "./routes/courses/courses.route.js";
 import userRoute from "./routes/user/user.route.js";
 import quiz from "./routes/PolitiQTest/testimonial.route.js";
 import faq from "./routes/faq/testimonial.route.js";
-import websiteInfo from "./routes/websiteInfo/testimonial.route.js";
 import testimonial from "./routes/testimonial/testimonial.route.js";
-import blogs from "./routes/blogs/testimonial.route.js";
 import contact from "./routes/contact/testimonial.route.js";
 import newslatter from "./routes/newsLatter/testimonial.route.js";
 import askquestions from "./routes/askquestions/testimonial.route.js";
@@ -70,7 +71,7 @@ dbConnection();
 // route
 // using
 app.use("/api/v1/websiteInfo", websiteInfo);
-
+app.use("/api/v1/blogs", blogs);
 // using end
 
 
@@ -90,7 +91,7 @@ app.use("/api/v1/payment", paymentRoute);
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/course", course);
 
-app.use("/api/v1/blogs", blogs);
+
 app.use("/api/v1/quiz", quiz);
 app.use("/api/v1/faq", faq);
 app.use("/api/v1/talent", faq);

@@ -2,14 +2,15 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 dotenv.config();
 const dbURL = process.env.DATABASE_URL;
+const dbName = "upternidea";
 const dbConnection = () => {
   mongoose
-    .connect(dbURL)
+    .connect(dbURL,{dbName})
     .then(() => {
       console.log(`Database connected successfully`);
     })
     .catch((err) => {
-      console.log("mongoose error", err);
+      console.log("mongoose error", err); 
     });
 };
 

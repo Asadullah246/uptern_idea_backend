@@ -6,34 +6,76 @@ const commentSchema = new Schema({
     type: String,
     required: true,
   },
-  email: {
+  rating: {
+    type: Number,
+    required: true,
+  },
+  status: {
     type: String,
     required: true,
   },
-  comment: { 
+  image: {
+    type: String,
+    required: false,
+  },
+  comment: {
     type: String,
     required: true,
   },
 }, { timestamps: true });
 
+const linksSchema = new Schema({
+  facebook: {
+    type: String,
+    required: false,
+  },
+  twitter: {
+    type: String,
+    required: false,
+  },
+  linkedIn: {
+    type: String,
+    required: false,
+  },
+}, { timestamps: true });
+
+
+const authorSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  designation: {
+    type: String,
+    required: false,
+  },
+  image: {
+    type: String,
+    required: false,
+  },
+  description: {
+    type: String,
+    required: false,
+  },
+  links:{linksSchema},
+}, { timestamps: true });
+
+
 const jobSchema = new Schema(
   {
-    logoImage: {
+    image: {
       type: String,
-      required: false,
+      required: true,
     },
     title: {
       type: String,
-      required: true,
+      required: false,
     },
     description: {
       type: String,
       required: true,
     },
-    author: {
-      type: String,
-      required: false,
-    },
+    author: {authorSchema},
     comments: [commentSchema],
   },
   { timestamps: true }

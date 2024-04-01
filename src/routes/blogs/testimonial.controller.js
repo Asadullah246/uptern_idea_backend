@@ -37,7 +37,7 @@ export const updateUser = async (
 ) => {
   try {
     const { _id } = req.params;
-    const data = req.body; 
+    const data = req.body;
 
     // if (req.file) {
     //   // Save the file path to the database
@@ -64,7 +64,7 @@ export const deleteUser = async (
     return res.status(201).json({ status: "success", data: user });
   } catch (error) {
     console.log(error);
-    return res.status(201).json({ massage: error });
+    return res.status(401).json({ massage: error });
   }
 };
 
@@ -80,7 +80,7 @@ export const getUser = async (
     return res.status(201).json({ status: "success", data: users });
   } catch (error) {
     console.log(error);
-    return res.status(201).json({ massage: error });
+    return res.status(401).json({ massage: error });
   }
 };
 
@@ -95,6 +95,6 @@ export const getUsers = async (
     return res.status(201).json({ status: "success", data: users });
   } catch (error) {
     console.log(error);
-    return res.status(201).json({ massage: error });
+    return res.status(401).json({ massage: error }); 
   }
 };

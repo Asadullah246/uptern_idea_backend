@@ -23,6 +23,17 @@ const commentSchema = new Schema({
     required: true,
   },
 }, { timestamps: true });
+const BlogTextSchema = new Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  details: {
+    type: String,
+    required: true,
+  },
+
+}, { timestamps: true });
 
 const linksSchema = new Schema({
   facebook: {
@@ -57,7 +68,7 @@ const authorSchema = new Schema({
     type: String,
     required: false,
   },
-  links:{linksSchema},
+  links:linksSchema, 
 }, { timestamps: true });
 
 
@@ -65,18 +76,23 @@ const jobSchema = new Schema(
   {
     image: {
       type: String,
-      required: true,
+      required: false,
     },
     title: {
       type: String,
-      required: false,
-    },
-    description: {
-      type: String,
       required: true,
     },
-    author: {authorSchema},
-    comments: [commentSchema],
+
+    description: {
+      type: [BlogTextSchema],
+      required: false, // Making comments optional
+    },
+
+    author: authorSchema,
+    comments: {
+      type: [commentSchema],
+      required: false, // Making comments optional
+    },
   },
   { timestamps: true }
 );

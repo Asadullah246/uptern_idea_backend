@@ -1,5 +1,4 @@
 
-import multer from "multer";
 import {
   createJob,
   getJobApi,
@@ -9,7 +8,6 @@ import {
 } from "./testimonial.service.js";
 
 
-const upload = multer({ dest: 'uploads/' });
 
 
 // create a single user

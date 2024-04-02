@@ -1,7 +1,6 @@
 // const get user
 import express from "express";
 import { createUserApi, deleteUser, getUser, getUsers, updateUser } from "./testimonial.controller.js";
-import upload from "../../utilities/multerfile.js";
 
 const router = express.Router();
 

@@ -14,7 +14,7 @@ export const createuser = async (data) => {
   }
 };
 export const login = async (data) => {
-  const findUser = await user.findOne({ email: data.email, password:data.password }); 
+  const findUser = await user.findOne({ email: data.email, password:data.password });
  return findUser ;
 };
 
@@ -23,8 +23,8 @@ export const patchJob = async ({
   _id,
   data,
 })=> {
-  // const query = { _id: new ObjectId(_id) };
-  const query = { signingId: _id };
+  // const query = { _id: new ObjectId(_id) };  
+  const query = { _id: _id };
   const updateDoc = { $set: data };
   const option = { upsert: true, runValidators: true };
   const result = await user.findByIdAndUpdate(query, updateDoc, option);
@@ -40,7 +40,7 @@ export const removeJob = async (_id) => {
 // get single Job from DB
 export const getSingelUser = async (id) => {
   const result = await user.findOne(
-    {signingId:id}
+    {_id:id}
   )
   return result;
 };

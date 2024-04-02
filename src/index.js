@@ -30,20 +30,10 @@ app.use("/src/uploads", express.static(path.join(__dirname, "uploads")));
 // database adding
 import dbConnection from "./db/db.js";
 
-
-
-import crypto from 'crypto'; 
-
-const generateSecretKey = () => {
-  return crypto.randomBytes(32).toString('hex'); // Generate a 256-bit (32-byte) random string
-};
-
-console.log(generateSecretKey());
-
-
 // routes
 import websiteInfo from "./routes/websiteInfo/testimonial.route.js";
 import blogs from "./routes/blogs/testimonial.route.js";
+import services from "./routes/services/testimonial.route.js";
 
 
 import paymentRoute from "./routes/payment/payment.route.js";
@@ -80,6 +70,7 @@ dbConnection();
 app.use("/api/v1/websiteInfo", websiteInfo);
 app.use("/api/v1/blogs", blogs);
 app.use("/api/v1/user", userRoute);
+app.use("/api/v1/services", services); 
 // using end
 
 

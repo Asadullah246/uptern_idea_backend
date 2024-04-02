@@ -40,7 +40,7 @@ export const loginUser = async (req, res) => {
     const token = jwt.sign({ id: user._id, email: user.email }, SECRET_KEY, {
       expiresIn,
     });
-    res.json({ token });
+    res.json({ _id:user?._id, token }); 
   } catch (error) {
     return res.status(401).json({ massage: error });
   }

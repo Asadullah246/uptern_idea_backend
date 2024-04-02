@@ -32,6 +32,13 @@ import dbConnection from "./db/db.js";
 
 
 
+import crypto from 'crypto'; 
+
+const generateSecretKey = () => {
+  return crypto.randomBytes(32).toString('hex'); // Generate a 256-bit (32-byte) random string
+};
+
+console.log(generateSecretKey());
 
 
 // routes
@@ -72,6 +79,7 @@ dbConnection();
 // using
 app.use("/api/v1/websiteInfo", websiteInfo);
 app.use("/api/v1/blogs", blogs);
+app.use("/api/v1/user", userRoute);
 // using end
 
 
@@ -88,7 +96,7 @@ app.use("/api/v1/team_staff", team_staff);
 // others buttons end
 
 app.use("/api/v1/payment", paymentRoute);
-app.use("/api/v1/user", userRoute);
+
 app.use("/api/v1/course", course);
 
 
@@ -117,96 +125,8 @@ app.get("/", (req, res, next) => {
 });
 
 
-// get the files
-app.get("/list", async (req, res) => {
-  try {
-    const params = {
-      Bucket: bucket2,
-    };
 
-    const response = await s3Client.send(new ListObjectsV2Command(params));
-    const keys = response.Contents.map((item) => item.Key);
-    console.log("keys", keys);
-    res.json(keys);
-  } catch (error) {
-    console.error("Error listing objects:", error);
-    res.status(500).json({ error: "An error occurred while listing objects" });
-  }
-});
 
-// get by url
-app.get("/list", async (req, res) => {
-  try {
-    const params = {
-      Bucket: bucket2,
-    };
-
-    const listResponse = await s3Client.send(new ListObjectsV2Command(params));
-    const objects = listResponse.Contents;
-
-    // Generate URLs for each object
-    const objectUrls = objects.map((object) => {
-      const objectKey = object.Key;
-      const objectUrl = `${baseURLAWS}/${objectKey}`; // Replace with your S3 bucket endpoint
-      return objectUrl;
-    });
-
-    console.log("url", objectUrls);
-    res.json(objectUrls);
-  } catch (error) {
-    console.error("Error listing objects:", error);
-    res.status(500).json({ error: "An error occurred while listing objects" });
-  }
-});
-
-// Route to get an object by its key (file path)
-
-app.get("/getObject/:objectKey", async (req, res) => {
-  const objectKey = req.params.objectKey;
-
-  try {
-    const params = {
-      Bucket: bucket2, // Replace with your S3 bucket name
-      Key: objectKey,
-    };
-
-    const getObjectResponse = await s3Client.send(new GetObjectCommand(params));
-    const objectStream = getObjectResponse.Body;
-
-    // Set the appropriate content type based on your file's MIME type
-    res.setHeader("Content-Type", "application/octet-stream"); // Example content type
-
-    // Pipe the object stream to the response
-    objectStream.pipe(res);
-  } catch (error) {
-    console.error("Error getting object:", error);
-    res
-      .status(500)
-      .json({ error: "An error occurred while getting the object" });
-  }
-});
-
-// delete file
-app.delete("/deleteObject/:objectKey", async (req, res) => {
-  const objectKey = req.params.objectKey;
-  // const objectKey = "1694776607065";
-
-  try {
-    const params = {
-      Bucket: bucket2, // Replace with your S3 bucket name
-      Key: objectKey,
-    };
-
-    await s3Client.send(new DeleteObjectCommand(params));
-
-    res.json({ message: "Object deleted successfully" });
-  } catch (error) {
-    console.error("Error deleting object:", error);
-    res
-      .status(500)
-      .json({ error: "An error occurred while deleting the object" });
-  }
-});
 
 app.all("*", (req, res, next) => {
   res.status(404).json({

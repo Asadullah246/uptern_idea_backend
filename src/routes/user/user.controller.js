@@ -1,21 +1,23 @@
-
+import { user } from "./user.model.js";
 import {
   createuser,
   getALLusers,
   getSingelUser,
+  login,
   patchJob,
 } from "./user.service.js";
+import jwt from "jsonwebtoken";
+
+const SECRET_KEY =process.env.SECRET_KEY;
+
+
 
 // create a single user
-export const createUserApi = async (
-  req,
-  res,
-  next
-) => {
+export const createUserApi = async (req, res, next) => {
   try {
     const data = req.body;
     const user = await createuser(data);
-    if(!user){
+    if (!user) {
       return res.status(401).json({ massage: "user already exists" });
     }
     return res.status(200).json({ status: "success", data: user });
@@ -24,12 +26,40 @@ export const createUserApi = async (
   }
 };
 
+export const loginUser = async (req, res) => {
+  try {
+    const data = req.body;
+    const {email, password, rememberMe}=req.body
+    const user = await login(data);
+
+    if (!user) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    const expiresIn = rememberMe ? "7d" : "1d"; // Set token expiration
+    const token = jwt.sign({ id: user._id, email: user.email }, SECRET_KEY, {
+      expiresIn,
+    });
+    res.json({ token });
+  } catch (error) {
+    return res.status(401).json({ massage: error });
+  }
+  //   console.log("body", req.body );
+  //   const { email, password, rememberMe } = req.body;
+  //   console.log("re", email, password, rememberMe) ;
+  //   const currentuser = user.findOne(u => u.email === email && u.password === password);
+  // console.log("cu", currentuser);
+  //   if (!currentuser) {
+  //     return res.status(401).json({ message: 'Invalid ' });
+  //   }
+
+  //   const expiresIn = rememberMe ? '7d' : '1d'; // Set token expiration
+  //   const token = jwt.sign({ id: currentuser._id, email: currentuser.email }, SECRET_KEY, { expiresIn });
+  //   res.json({ token });
+};
+
 // patch a single user
-export const updateUser = async (
-  req,
-  res,
-  next
-) => {
+export const updateUser = async (req, res, next) => {
   try {
     const { _id } = req.params;
     const data = req.body;
@@ -42,11 +72,7 @@ export const updateUser = async (
 };
 
 // delete a single user
-export const deleteUser = async (
-  req,
-  res,
-  next
-) => {
+export const deleteUser = async (req, res, next) => {
   try {
     const { _id } = req.params;
     const user = await removeJob(_id);
@@ -57,13 +83,8 @@ export const deleteUser = async (
   }
 };
 
-
 // get all users
-export const getUsers = async (
-  req,
-  res,
-  next
-) => {
+export const getUsers = async (req, res, next) => {
   try {
     const users = await getALLusers();
     return res.status(200).json({ status: "success", data: users });
@@ -73,11 +94,7 @@ export const getUsers = async (
   }
 };
 // get single users
-export const getUser = async (
-  req,
-  res,
-  next
-) => {
+export const getUser = async (req, res, next) => {
   try {
     const { id } = req.params;
 

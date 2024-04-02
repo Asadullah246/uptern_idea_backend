@@ -4,65 +4,31 @@ const userSchema = new Schema(
   {
     name: {
       type: String,
-      required: false,
+      required: true,
     },
     email: {
       type: String,
-      required: false,
-    },
-    signingId: {
-      type: String,
       required: true,
     },
-    skill_rating: {
-      type: Number,
-      required: false,
-    },
-    // skill: [
-    //   {
-    //     name: {
-    //       type: String,
-    //       required: false,
-    //     },
-    //     title: {
-    //       type:String,
-    //       required: false,
-    //     },
-    //     description: {
-    //       type:String,
-    //       required: false,
-    //     }
-    //   },
-    // ],
-
-    courses: [
-      {
-        course_id: {
-          type: Schema.ObjectId,
-          required: false,
-        },
-      },
-    ],
-
-    experiences: {
+    designation: {
       type: String,
       required: false,
     },
-    phone: {
+    facebook: {
       type: String,
-      required: true,
+      required: false,
     },
-    address: {
+    instagram: {
       type: String,
-      required: true,
+      required: false,
 
     },
-    talent: {
+    linkedIn: {
       type: Number,
       required: false,
 
     },
-    accounttype: {
+    twitter: {
       type: String ,
       required: false,
     },
@@ -70,22 +36,14 @@ const userSchema = new Schema(
       type: String,
       required: false,
     },
-    image_url: {
+    image: {
       type: String,
       required: false,
     },
-    country: {
+    password: {
       type: String,
       required: true,
     },
-    skills: {
-      type: String,
-      required: false,
-    },
-    tittle:{
-      type: String,
-      required: false,
-    }
 
   },
   { timestamps: true }
@@ -93,5 +51,5 @@ const userSchema = new Schema(
 
 const user = model("User", userSchema);
 
-export { user };
+export { user }; 
 

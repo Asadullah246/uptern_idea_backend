@@ -13,6 +13,10 @@ export const createuser = async (data) => {
     return result;
   }
 };
+export const login = async (data) => {
+  const findUser = await user.findOne({ email: data.email, password:data.password }); 
+ return findUser ;
+};
 
 
 export const patchJob = async ({
@@ -53,3 +57,6 @@ export const getALLusers = async ()=> {
   const result = await user.find({});
   return result;
 };
+
+
+

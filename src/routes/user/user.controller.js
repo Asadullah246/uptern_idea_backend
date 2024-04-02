@@ -44,18 +44,7 @@ export const loginUser = async (req, res) => {
   } catch (error) {
     return res.status(401).json({ massage: error });
   }
-  //   console.log("body", req.body );
-  //   const { email, password, rememberMe } = req.body;
-  //   console.log("re", email, password, rememberMe) ;
-  //   const currentuser = user.findOne(u => u.email === email && u.password === password);
-  // console.log("cu", currentuser);
-  //   if (!currentuser) {
-  //     return res.status(401).json({ message: 'Invalid ' });
-  //   }
 
-  //   const expiresIn = rememberMe ? '7d' : '1d'; // Set token expiration
-  //   const token = jwt.sign({ id: currentuser._id, email: currentuser.email }, SECRET_KEY, { expiresIn });
-  //   res.json({ token });
 };
 
 // patch a single user

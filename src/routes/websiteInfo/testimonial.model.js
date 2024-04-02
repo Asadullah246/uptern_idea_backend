@@ -10,12 +10,12 @@ const jobSchema = new Schema(
       type: String,
       required: false,
     },
-    logoImage: {
+    logo: {
       type: String,
       required: false,
     },
     phone: {
-      type: Number,
+      type: String,
       required: false,
     },
     email: {

@@ -15,10 +15,6 @@ const jobSchema = new Schema(
       type: String,
       required: true,
     },
-    designation: {
-      type: String,
-      required: true,
-    },
     phone: {
       type: String,
       required: false,

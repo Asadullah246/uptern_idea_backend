@@ -4,14 +4,15 @@ import { user } from "./user.model.js";
 
 // create Job
 export const createuser = async (data) => {
-  const findUser = await user.findOne({ signingId: data.signingId });
-  if (findUser) {
-    return null;
-  } else {
+  // const findUser = await user.findOne({ signingId: data?.signingId });
+  // if (findUser) {
+  //   return null;
+  // } else {
+
     const result = new user(data);
     await result.save();
     return result;
-  }
+  // }
 };
 export const login = async (data) => {
   const findUser = await user.findOne({ email: data.email, password:data.password });
@@ -23,7 +24,7 @@ export const patchJob = async ({
   _id,
   data,
 })=> {
-  // const query = { _id: new ObjectId(_id) };  
+  // const query = { _id: new ObjectId(_id) };
   const query = { _id: _id };
   const updateDoc = { $set: data };
   const option = { upsert: true, runValidators: true };

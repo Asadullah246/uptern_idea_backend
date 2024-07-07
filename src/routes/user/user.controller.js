@@ -35,12 +35,13 @@ export const loginUser = async (req, res) => {
     if (!user) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
+    console.log("user is ", user );
 
     const expiresIn = rememberMe ? "7d" : "1d"; // Set token expiration
     const token = jwt.sign({ id: user._id, email: user.email }, SECRET_KEY, {
       expiresIn,
     });
-    res.json({ _id:user?._id, token }); 
+    res.json({ _id:user?._id, token });
   } catch (error) {
     return res.status(401).json({ massage: error });
   }

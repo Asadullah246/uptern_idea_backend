@@ -36,12 +36,20 @@ const jobSchema = new Schema(
       type:String,
       required: false,
     },
+    youtube: {
+      type:String,
+      required: false,
+    },
     linkedIn: {
       type:String,
       required: false,
     },
     showInHomePage: {
       type:Boolean,
+      required: true,
+    },
+    role: {
+      type:String,
       required: true,
     },
 

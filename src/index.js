@@ -33,6 +33,7 @@ import services from "./routes/services/testimonial.route.js";
 import userRoute from "./routes/user/user.route.js";
 import team from "./routes/team/testimonial.route.js";
 import testimonial from "./routes/testimonial/testimonial.route.js";
+import admin from "./routes/admin/user.route.js"; 
 
 
 // connect to database
@@ -46,12 +47,16 @@ app.use("/api/v1/services", services);
 app.use("/api/v1/team", team);
 app.use("/api/v1/testimonial", testimonial);
 
+// temp
+app.use("/api/v1/admin", admin);
+
 // routes
 
 app.get("/", (req, res, next) => {
   console.log("connected");
   res.send("server running");
 });
+
 
 
 

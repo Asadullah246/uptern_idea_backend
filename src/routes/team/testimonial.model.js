@@ -52,6 +52,10 @@ const jobSchema = new Schema(
       type:String,
       required: true,
     },
+    serial: {
+      type:Number,
+      required: false,
+    },
 
   },
   { timestamps: true }

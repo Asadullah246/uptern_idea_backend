@@ -12,7 +12,7 @@ const jobSchema = new Schema(
     },
     logo: {
       type: String,
-      required: false,
+      required: false, 
     },
     phone: {
       type: String,
@@ -35,6 +35,14 @@ const jobSchema = new Schema(
       required: false,
     },
     instagram: {
+      type: String,
+      required: false,
+    },
+    linkedIn: {
+      type: String,
+      required: false,
+    },
+    youtube: {
       type: String,
       required: false,
     },

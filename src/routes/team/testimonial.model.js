@@ -44,6 +44,10 @@ const jobSchema = new Schema(
       type:String,
       required: false,
     },
+    instagram: {
+      type:String,
+      required: false,
+    },
     showInHomePage: {
       type:Boolean,
       required: true,

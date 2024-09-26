@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 dotenv.config();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 7000;
 import path from "path"; // Import the 'path' module
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -33,13 +33,26 @@ import services from "./routes/services/testimonial.route.js";
 import userRoute from "./routes/user/user.route.js";
 import team from "./routes/team/testimonial.route.js";
 import testimonial from "./routes/testimonial/testimonial.route.js";
-import admin from "./routes/admin/user.route.js"; 
+import admin from "./routes/admin/user.route.js";
+
+
+import customer from "./routes/customer/testimonial.route.js";
+import invoice from "./routes/invoice/invoice.route.js";
+import payment from "./routes/payment/payment.route.js";
+import template from "./routes/template/template.route.js";
 
 
 // connect to database
 dbConnection();
 
 // route
+app.use("/api/v1/customer", customer);
+app.use("/api/v1/invoice", invoice);
+app.use("/api/v1/payment", payment);
+app.use("/api/v1/template", template);
+
+
+
 app.use("/api/v1/websiteInfo", websiteInfo);
 app.use("/api/v1/blogs", blogs);
 app.use("/api/v1/user", userRoute);

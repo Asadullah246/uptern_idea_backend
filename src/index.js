@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 dotenv.config();
 const port = process.env.PORT || 7000;
-import path from "path"; // Import the 'path' module
+import path from "path";
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -69,11 +69,6 @@ app.get("/", (req, res, next) => {
   console.log("connected");
   res.send("server running");
 });
-
-
-
-
-
 
 app.all("*", (req, res, next) => {
   res.status(404).json({

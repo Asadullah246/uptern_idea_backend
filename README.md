@@ -1,7 +1,7 @@
-# Political Talent Backend
+# Uptern Idea Backend
 
 ## Project Overview
-The **Political Talent Backend** is a server-side application designed to handle the backend operations for the Political Talent platform. It is built using **Node.js** and **Express.js**, with MongoDB as the database, providing a scalable and efficient API for the frontend.
+The **uptern_idea Backend** is a server-side application designed to handle the backend operations for a agency platform. It is built using **Node.js** and **Express.js**, with MongoDB as the database, providing a scalable and efficient API for the frontend.
 
 ## Features
 - **User Authentication**: Secure JWT-based authentication system.
@@ -21,7 +21,7 @@ To set up and run this project locally:
 ```bash
 # Clone the repository
 git clone <repo-link>
-cd political-talent-backend
+cd uptern_idea-backend
 
 # Install dependencies
 npm install

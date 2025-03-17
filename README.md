@@ -41,8 +41,9 @@ npm run dev
 Create a `.env` file in the root directory and add the following variables:
 ```
 PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_key
+DATABASE_URL=your_mongodb_connection_string
+SECRET_KEY = your_jwt_secret_key
+
 
 ## Deployment
 The backend can be deployed on **Heroku**, **Vercel**, or **VPS servers** for production use.
